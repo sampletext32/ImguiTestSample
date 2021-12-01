@@ -32,6 +32,8 @@ namespace Dear_ImGui_Sample
 
         private System.Numerics.Vector2 _scaleFactor = System.Numerics.Vector2.One;
 
+        public ImFontPtr arialFont; 
+
         /// <summary>
         /// Constructs a new ImGuiController.
         /// </summary>
@@ -43,9 +45,12 @@ namespace Dear_ImGui_Sample
             IntPtr context = ImGui.CreateContext();
             ImGui.SetCurrentContext(context);
             var io = ImGui.GetIO();
-            io.Fonts.AddFontDefault();
+            //io.Fonts.AddFontDefault();
+            arialFont = io.Fonts.AddFontFromFileTTF("arial.ttf", 18);
 
             io.BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset;
+
+            io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;
 
             CreateDeviceResources();
             SetKeyMappings();

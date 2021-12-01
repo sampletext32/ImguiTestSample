@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -73,6 +74,18 @@ namespace Dear_ImGui_Sample
         {
             GL.CreateVertexArrays(1, out VAO);
             LabelObject(ObjectLabelIdentifier.VertexArray, VAO, $"VAO: {Name}");
+        }
+
+        public static bool IsDirectory(this FileSystemInfo info)
+        {
+            // get the file attributes for file or directory
+            FileAttributes attr = info.Attributes;
+
+            //detect whether its a directory or file
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                return true;
+            else
+                return false;
         }
     }
 }
